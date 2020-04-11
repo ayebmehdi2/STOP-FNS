@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:elevation="3dp"
+            android:background="@android:color/white"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_height="50dp">
+            <ImageView
+                android:layout_width="50dp"
+                android:background="@drawable/click_effect"
+                android:padding="10dp"
+                android:layout_marginStart="6sp"
+                android:layout_height="match_parent"
+                android:id="@+id/back"
+                android:src="@drawable/ic_keyboard_backspace_black_24dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Comments"
+                android:textStyle="bold"
+                android:textColor="#212121"
+                android:layout_marginStart="6sp"
+                android:textSize="22sp"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="1dp"/>
+
+        </LinearLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:background="#F1F1F1"
+            android:id="@+id/rec_comments"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFF"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="35dp"
+                android:src="@drawable/b4"
+                android:id="@+id/my_img"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="16sp"
+                android:layout_height="35dp"/>
+
+            <EditText
+                android:layout_width="0dp"
+                android:inputType="text"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:textSize="14sp"
+                android:paddingStart="16sp"
+                android:id="@+id/add_comment"
+                android:background="#FFF"
+                android:paddingEnd="16sp"
+                android:hint="Add comment"/>
+
+            <ImageView
+                android:padding="14sp"
+                android:background="@drawable/click_effect"
+
+                android:id="@+id/post_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_send_black_24dp"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:background="#FFF"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_margin="10dp"
+
+            android:background="@drawable/back_white"
+            >
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_add_a_photo_black_24dp"
+                />
+
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"/>
+
+        </RelativeLayout>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Title"
+            android:paddingStart="16sp"
+            android:layout_margin="10dp"
+            android:id="@+id/title"
+            android:background="@drawable/back_white"
+            android:layout_marginTop="16sp"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:hint="Description"
+            android:paddingStart="16sp"
+            android:layout_margin="10dp"
+            android:background="@drawable/back_white"
+            android:id="@+id/desc"
+            android:layout_marginTop="16sp"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_margin="16sp"
+            android:text="Post"
+            android:textColor="#FFF"
+            android:layout_height="wrap_content"
+            android:id="@+id/post"
+            android:background="@drawable/back_move"/>
+
+
+    </LinearLayout>
+</layout>

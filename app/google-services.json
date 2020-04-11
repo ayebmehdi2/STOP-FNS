@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "455938204675",
+    "firebase_url": "https://fakenews-bbb2f.firebaseio.com",
+    "project_id": "fakenews-bbb2f",
+    "storage_bucket": "fakenews-bbb2f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:455938204675:android:15bd40a4790c592a655a36",
+        "android_client_info": {
+          "package_name": "com.mehdi.fakenews"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "455938204675-hcis8ukagu71h6l0fs9v9c8eur75ku0n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mehdi.fakenews",
+            "certificate_hash": "a4b80bdecdcaa2f516e93faca05f72d4ab833418"
+          }
+        },
+        {
+          "client_id": "455938204675-sf5vdeu027gbndlb1iug8h8kn97c457t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUEqESvH3i8sSt45fFvF4tzlhR3ekZhjM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "455938204675-sf5vdeu027gbndlb1iug8h8kn97c457t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
