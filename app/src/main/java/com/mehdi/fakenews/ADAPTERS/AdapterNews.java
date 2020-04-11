@@ -37,8 +37,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.firebase.ui.auth.AuthUI.getApplicationContext;
-
 public class AdapterNews extends RecyclerView.Adapter<AdapterNews.holder> {
 
 
@@ -76,6 +74,7 @@ public class AdapterNews extends RecyclerView.Adapter<AdapterNews.holder> {
     }
 
     private String id;
+    private SharedPreferences preferences;
 
     @NonNull
     @Override
@@ -83,7 +82,7 @@ public class AdapterNews extends RecyclerView.Adapter<AdapterNews.holder> {
         context = parent.getContext();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         reference = database.getReference();
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        preferences = PreferenceManager.getDefaultSharedPreferences(context);
         id =preferences.getString("uid","");
         return new holder(LayoutInflater.from(parent.getContext()).inflate(R.layout.post_item, parent, false));
     }
@@ -134,12 +133,7 @@ public class AdapterNews extends RecyclerView.Adapter<AdapterNews.holder> {
                         String lk = dataSnapshot.getChildrenCount() + " Fake";
                         holder.fake.setText(lk);
 
-                        if (id.equals(tag.getAuthId())){
-                            holder.action.setVisibility(View.GONE);
-                            return;
-                        }
-
-                        if (dataSnapshot.hasChild(id)){
+                        if (dataSnapshot.hasChild(id) || id.equals(tag.getAuthId())){
                             holder.action.setVisibility(View.GONE);
                         }else {
                             holder.action.setVisibility(View.VISIBLE);
@@ -158,12 +152,7 @@ public class AdapterNews extends RecyclerView.Adapter<AdapterNews.holder> {
                         String lk = dataSnapshot.getChildrenCount() + " Real";
                         holder.real.setText(lk);
 
-                        if (id.equals(tag.getAuthId())){
-                            holder.action.setVisibility(View.GONE);
-                            return;
-                        }
-
-                        if (dataSnapshot.hasChild(id)){
+                        if (dataSnapshot.hasChild(id) || id.equals(tag.getAuthId())){
                             holder.action.setVisibility(View.GONE);
                         }else {
                             holder.action.setVisibility(View.VISIBLE);
@@ -218,21 +207,6 @@ public class AdapterNews extends RecyclerView.Adapter<AdapterNews.holder> {
             comment = itemView.findViewById(R.id.comment);
             action = itemView.findViewById(R.id.action);
 
-            TOPIC = "/topics/" + id.split("-")[0]; //topic must match with what the receiver subscribed to
-            NOTIFICATION_TITLE = name.getText().toString();
-            NOTIFICATION_MESSAGE = "Vote in your news"  + " - " + DateFormat.getDateInstance().format(new Date());
-
-            JSONObject notification = new JSONObject();
-            JSONObject notifcationBody = new JSONObject();
-            try {
-                notifcationBody.put("title", NOTIFICATION_TITLE);
-                notifcationBody.put("message", NOTIFICATION_MESSAGE);
-
-                notification.put("to", TOPIC);
-                notification.put("data", notifcationBody);
-            } catch (JSONException e) {
-                Log.e(TAG, "onCreate: " + e.getMessage() );
-            }
 
             fakeA.setOnClickListener(v -> {
                 reference.child("POSTS").child(data.get(getAdapterPosition())).child("FAKE").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -244,6 +218,29 @@ public class AdapterNews extends RecyclerView.Adapter<AdapterNews.holder> {
                         }else {
                             reference.child("POSTS").child(data.get(getAdapterPosition())).child("FAKE").
                                     child(id).setValue(0);
+                        }
+
+
+
+                        boolean b =preferences.getBoolean("not",true);
+                        if (!b || id.equals(data.get(getAdapterPosition()).split("-")[0])){
+                            return;
+                        }
+
+                        TOPIC = "/topics/" + data.get(getAdapterPosition()).split("-")[0]; //topic must match with what the receiver subscribed to
+                        NOTIFICATION_TITLE = name.getText().toString();
+                        NOTIFICATION_MESSAGE = "Vote in your news"  + " - " + DateFormat.getDateInstance().format(new Date());
+
+                        JSONObject notification = new JSONObject();
+                        JSONObject notifcationBody = new JSONObject();
+                        try {
+                            notifcationBody.put("title", NOTIFICATION_TITLE);
+                            notifcationBody.put("message", NOTIFICATION_MESSAGE);
+
+                            notification.put("to", TOPIC);
+                            notification.put("data", notifcationBody);
+                        } catch (JSONException e) {
+                            Log.e(TAG, "onCreate: " + e.getMessage() );
                         }
 
 
@@ -270,7 +267,32 @@ public class AdapterNews extends RecyclerView.Adapter<AdapterNews.holder> {
                             reference.child("POSTS").child(data.get(getAdapterPosition())).child("REAL").
                                     child(id).setValue(0);
                         }
+
+
+                        boolean b =preferences.getBoolean("not",true);
+                        if (!b || id.equals(data.get(getAdapterPosition()).split("-")[0])){
+                            return;
+                        }
+
+                        TOPIC = "/topics/" + data.get(getAdapterPosition()).split("-")[0]; //topic must match with what the receiver subscribed to
+                        NOTIFICATION_TITLE = name.getText().toString();
+                        NOTIFICATION_MESSAGE = "Vote in your news"  + " - " + DateFormat.getDateInstance().format(new Date());
+
+                        JSONObject notification = new JSONObject();
+                        JSONObject notifcationBody = new JSONObject();
+                        try {
+                            notifcationBody.put("title", NOTIFICATION_TITLE);
+                            notifcationBody.put("message", NOTIFICATION_MESSAGE);
+
+                            notification.put("to", TOPIC);
+                            notification.put("data", notifcationBody);
+                        } catch (JSONException e) {
+                            Log.e(TAG, "onCreate: " + e.getMessage() );
+                        }
+
+
                         sendNotification(notification);
+
                         notifyItemChanged(getAdapterPosition());
                     }
 

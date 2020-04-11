@@ -180,6 +180,13 @@ public class Comments extends AppCompatActivity implements AdapterComments.Comme
 
             reference.child("POSTS").child(id).child("COMMENTS");
 
+
+            binding.addComment.setText("");
+            boolean b =preferences.getBoolean("not",true);
+            if (!b || userid.equals(id.split("-")[0])){
+                return;
+            }
+
             String userSendId = id.split("-")[0];
             TOPIC = "/topics/" + userSendId; //topic must match with what the receiver subscribed to
             NOTIFICATION_TITLE = name;
@@ -199,7 +206,6 @@ public class Comments extends AppCompatActivity implements AdapterComments.Comme
             }
             sendNotification(notification);
 
-            binding.addComment.setText("");
 
 
         });

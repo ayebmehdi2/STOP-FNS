@@ -221,6 +221,13 @@ public class Replays extends AppCompatActivity implements AdapterComments.Commen
 
             reference.child("REPLAYS").child(replayId).setValue(comment);
 
+            binding.addComment.setText("");
+
+            boolean b =preferences.getBoolean("not",true);
+            if (!b || userid.equals(id.split("-")[0])){
+                return;
+            }
+
             String userSendId = id.split("-")[0];
             TOPIC = "/topics/" + userSendId; //topic must match with what the receiver subscribed to
             NOTIFICATION_TITLE = name;
@@ -238,8 +245,6 @@ public class Replays extends AppCompatActivity implements AdapterComments.Commen
                 Log.e(TAG, "onCreate: " + e.getMessage() );
             }
             sendNotification(notification);
-
-            binding.addComment.setText("");
 
         });
 

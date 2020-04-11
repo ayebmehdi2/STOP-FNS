@@ -3,11 +3,12 @@ package com.mehdi.fakenews.ACTIVITYS;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.view.MenuItem;
 
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -36,6 +37,14 @@ public class MainActivity extends AppCompatActivity implements Profile.clicksPro
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.home_screen);
 
+
+        binding.toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                startActivity(new Intent(MainActivity.this, Setting.class));
+                return true;
+            }
+        });
 
         database = FirebaseDatabase.getInstance();
         reference = database.getReference();
@@ -118,6 +127,7 @@ public class MainActivity extends AppCompatActivity implements Profile.clicksPro
         a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(a);
     }
+
 
 
 }

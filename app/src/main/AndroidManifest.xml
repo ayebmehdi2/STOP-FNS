@@ -28,6 +28,7 @@
         <activity android:name=".ACTIVITYS.ActivityPost"/>
         <activity android:name=".ACTIVITYS.Comments"/>
         <activity android:name=".ACTIVITYS.Replays"/>
+        <activity android:name=".ACTIVITYS.Setting"/>
 
         <service
             android:name=".NotificationService"

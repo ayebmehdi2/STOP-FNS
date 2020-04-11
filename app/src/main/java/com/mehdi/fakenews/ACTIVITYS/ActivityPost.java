@@ -62,6 +62,13 @@ public class ActivityPost extends AppCompatActivity {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         id =preferences.getString("uid","");
 
+        binding.back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         binding.post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
